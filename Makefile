@@ -20,7 +20,7 @@ DEL = rm -rf
 
 %o: %c 
 	@printf "$(GREEN)"
-	$(CC) $(CFLAG) -c $< -o $@ 
+	$(CC) $(CFLAG) -c $< -o $@
 
 all: $(NAME)
 
