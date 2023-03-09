@@ -26,7 +26,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(LIB_DIR)
-	@$(CC) $(CFLAGS) $(LIB) -o $(NAME) $(OBJS)
+	@$(CC) $(CFLAGS) $(LIB) -L/usr/local/lib -I/usr/local/include -lreadline -o $(NAME) $(OBJS)
 
 clean:
 	@make -C $(LIB_DIR) clean
