@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:05:06 by wluedara          #+#    #+#             */
-/*   Updated: 2023/03/10 15:05:10 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:10:03 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@
 #define BHWHT "\e[1;97m"
 
 //Reset
-#define reset "\e[0m"
+#define RESET "\e[0m"
 #define CRESET "\e[0m"
 #define COLOR_RESET "\e[0m"
 

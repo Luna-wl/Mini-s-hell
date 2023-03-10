@@ -1,12 +1,16 @@
-NAME = minihell
+NAME = minishell
 
-SRCS =	my_split.c
+SRCS =	my_split.c handle_problems.c
 
-RED=\033[0;31;41m
-GREEN=\033[0;32m
-YEL=\033[0;37;47m
-CYA=\033[1;36m
-RESET=\033[0m
+BLK=\e[0;30m
+RED=\e[0;31m
+GRN=\e[0;32m
+YEL=\e[0;33m
+BLU=\e[0;34m
+MAG=\e[0;35m
+CYN=\e[0;36m
+WHT=\e[0;37m
+RESET=\e[0m
 
 LIB_DIR = libft/
 LIB = $(LIB_DIR)/libft.a
@@ -20,13 +24,15 @@ DEL = rm -rf
 
 %o: %c 
 	@printf "$(GREEN)"
-	$(CC) $(CFLAG) -c $< -o $@
+	@$(CC) $(CFLAG) -c $< -o $@
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C $(LIB_DIR)
 	@$(CC) $(CFLAGS) $(LIB) -L/usr/local/lib -I/usr/local/include -lreadline -o $(NAME) $(OBJS)
+#	@printf "$(RED)"
+#	@cat hell.txt
 
 clean:
 	@make -C $(LIB_DIR) clean
