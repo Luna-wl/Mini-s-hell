@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 16:27:33 by wluedara          #+#    #+#             */
-/*   Updated: 2023/02/03 11:10:30 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/03/05 15:42:38 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,6 @@ char	**ft_split(char *s, char c)
 	int		i;
 	int		j;
 
-	if (*s == 0)
-	{
-		write(2, "Error\n", 6);
-		exit (0);
-	}
 	i = 0;
 	word = check_word(s, c);
 	new = (char **)malloc(sizeof(char *) * (word + 1));
