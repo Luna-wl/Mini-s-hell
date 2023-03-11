@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/03/11 23:51:41 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/03/12 00:04:40 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_word(char *s)
 	len = ft_strlen(s);
 	while (i < len)
 	{
-		if (is_tokens(s[i]) != -1)
+		if (is_tokens(s[i]) != -1 && is_tokens(s[i + 1]) == -1)
 			count++;
 		if (is_space(s[i]) == 0 && is_tokens(s[i]) == -1 && s[i]) //no space and tokens
 		{
@@ -56,7 +56,6 @@ int	count_letter(char *s)
 	int	i;
 
 	i = 0;
-	// printf(YEL"s letter = %s\n", s);
 	while (s[i] && is_space(s[i]) == 0)
 	{
 		if (is_space(s[i]) == 0)
@@ -96,6 +95,7 @@ char	**cut_cmd(char *s)
 	int		letter;
 
 	word = check_word(s);
+	printf(YEL"word = %d\n", word);
 	new = (char **)malloc(sizeof(char *) * (word + 1));
 	if (!new)
 		return (0);
