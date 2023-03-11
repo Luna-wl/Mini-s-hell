@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 14:29:35 by wluedara          #+#    #+#             */
-/*   Updated: 2023/03/10 16:26:03 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/03/11 23:51:41 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,62 +38,81 @@ int	check_word(char *s)
 	return (count);
 }
 
-// int	count_letter(char *s)
-// {
-// 	int		i;
+int	count_letter2(char *s)
+{
+	int	i;
 
-// 	i = 0;
-// 	while (s[i] != '\0' && s[i] )
-// 	{
-// 		if (s[i] )
-// 			i++;
-// 	}
-// 	return (i);
-// }
+	i = 0;
+	while (s[i] && is_space(s[i]) == 0)
+	{
+		if (is_space(s[i]) == 0)
+			i++;
+	}
+	return (i);
+}
 
-// char	*my_split(char *s )
-// {
-// 	char	*str;
-// 	int		letter;
-// 	int		i;
-// 	int		j;
+int	count_letter(char *s)
+{
+	int	i;
 
-// 	letter = count_letter(s);
-// 	str = (char *)malloc(sizeof(char) * (letter + 1));
-// 	if (!str)
-// 		return (0);
-// 	i = 0;
-// 	j = 0;
-// 	while (s[j] != 0 && s[j] != )
-// 		str[i++] = s[j++];
-// 	str[i] = '\0';
-// 	return (str);
-// }
+	i = 0;
+	// printf(YEL"s letter = %s\n", s);
+	while (s[i] && is_space(s[i]) == 0)
+	{
+		if (is_space(s[i]) == 0)
+			i++;
+	}
+	return (i);
+}
+
+char	*my_split(char *s)
+{
+	char	*str;
+	char	*s2;
+	int		letter;
+	int		i;
+	int		j;
+
+	s2 = ft_strtrim(s, " ");
+	letter = count_letter2(s2);
+	// printf(CYN"letter = %d\n", letter);
+	str = (char *)malloc(sizeof(char) * (letter + 1));
+	if (!str)
+		return (0);
+	i = 0;
+	j = 0;
+	while (s2[j] != 0 && is_space(s2[i]) == 0)
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	return (str);
+}
 
 char	**cut_cmd(char *s)
 {
 	char	**new;
 	int		word;
-	// int		i;
-	// int		j;
+	int		i;
+	int		j;
+	int		letter;
 
-	// i = 0;
 	word = check_word(s);
-	printf(YEL"word = %d\n", word);
 	new = (char **)malloc(sizeof(char *) * (word + 1));
 	if (!new)
 		return (0);
-	// j = 0;
-	// while (i < word)
-	// {
-	// 	while (s[j] != '\0')
-	// 		j++;
-	// 	new[i++] = my_split(&s[j]);
-	// 	j += count_letter(&s[j]);
-	// }
-	// new[i] = 0;
-	// return (new);
-	return (0);
+	i = 0;
+	j = 0;
+	letter = 0;
+	while (i < word)
+	{
+		while (is_space(s[i]) != 0 && s[j] != '\0')
+			j++;
+		new[i++] = my_split(&s[j]);
+		printf(BLU"letter = %d\n"RESET, letter);
+		letter = count_letter(&s[j]);
+		j += letter;
+	}
+	new[i] = NULL;
+	return (new);
 }
 
 int	main(int ac, char **av)
@@ -104,11 +123,19 @@ int	main(int ac, char **av)
 	while(1)
 	{
 		str = readline(RED"mini(s)hell>> "RESET);
-		printf(YEL"Readline = %s\n"RESET, str);
 		new = cut_cmd(str);
-		// for(int i = 0; new[i]; i++)
-		// {
-		// 	printf(MAG"new[%d] = %s\n"RESET, i, new[i]);
-		// }
+		for(int i = 0; new[i]; i++)
+		{
+			printf(MAG"new[%d] = %s\n"RESET, i, new[i]);
+		}
 	}
 }
+
+// # echo hello world|echo hello| echo ". hello "|ls| echo "'hello'"""
+// -> Parser Sent to expander
+// # {echo), {hello}, (world), NULL,
+// # {echo), {hello}, NULL,
+// # {echo), {". hello "}, NULL,
+// # {ls), NULL,
+// # (echo), ("'hello'"), (""), NULL.
+// if '' / "" not complete pair return ERROR in lexer.

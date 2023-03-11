@@ -6,7 +6,7 @@
 /*   By: wluedara <wluedara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:11:40 by wluedara          #+#    #+#             */
-/*   Updated: 2023/03/10 17:21:07 by wluedara         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:45:33 by wluedara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,25 @@ int	is_tokens(char c)
 	return (-1);
 }
 
+// int	detect_quote(char *s)
+// {
+// 	int	i;
+// 	// int	j;
+
+// 	i = 0;
+// 	// j = 0;
+// 	printf(YEL"s = %s\n", s);
+// 	while (s[i])
+// 	{
+// 		if (s[i] == '\'' || s[i] == '\"')
+// 			i++;
+		
+// 	}
+// 	return (0);
+// }
+
 // int main()
 // {
-// 	printf(BHMAG"===%d===\n"RESET, is_tokens('p'));
+// 	char *s = "'f''a''h'";
+// 	detect_quote(s);
 // }
